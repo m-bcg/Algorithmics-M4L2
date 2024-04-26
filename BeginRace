@@ -1,0 +1,18 @@
+
+
+local function check_start( x_part )
+	if x_part:IsA("VehicleSeat") == true then
+		workspace.Finish.Transparency = 0
+		workspace.Start.Transparency = 1
+		local timer = Instance.new("NumberValue")
+		timer.Name = "RaseTimer"
+		timer.Parent = game.ServerStorage
+		timer.Value = tick()
+		script.Disabled = true
+		workspace.Finish:FindFirstChildOfClass("Script").Disabled = false
+	end
+end
+script.Parent.Touched:Connect(check_start)
+
+
+
