@@ -1,0 +1,26 @@
+function Round(n, decimals)
+	decimals = decimals or 0
+	return math.floor(n * 10^decimals) / 10^decimals
+end
+
+
+local function check_finish( x_part )
+	if x_part:IsA("VehicleSeat") == true then
+		workspace.Finish.Transparency = 1
+		workspace.Start.Transparency = 0
+		local timer = game.ServerStorage:FindFirstChild("RaseTimer")
+		print("The race is over", timer.Value)
+		local raceTimeResult = tick() - timer.Value
+		raceTimeResult = Round(raceTimeResult, 2)
+		print(raceTimeResult, "seconds have passed")
+		script.Disabled = true
+		workspace.Finish:FindFirstChildOfClass("Script").Disabled = true
+		wait(3)
+		workspace.Start:FindFirstChildOfClass("Script").Disabled = false
+	end
+end
+
+script.Parent.Touched:Connect(check_finish)
+
+
+
